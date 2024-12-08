@@ -114,7 +114,7 @@ function App() {
           ))}
         </div>
 
-        <div className="mt-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+        <div className="mt-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-2 relative z-10">
           <p className="text-gray-600 text-sm">穴をクリックすると色が切り替わります</p>
           <button
             onClick={handleSaveChart}
