@@ -100,29 +100,34 @@ function App() {
         />
       )}
       
-      <div className="flex-1 p-4 md:p-6 overflow-hidden pt-16 md:pt-6">
-        <TitleInput title={title} onChange={setTitle} />
-        
-        <div id="chart-container" className="bg-white border border-gray-300 rounded-lg p-2 md:p-4 h-[calc(100vh-200px)] overflow-y-auto">
-          {holes.map((row, i) => (
-            <FluteSVG
-              key={i}
-              index={i}
-              holes={row}
-              onToggleHole={(holeIndex) => handleToggleHole(i, holeIndex)}
-            />
-          ))}
+      <div className="flex-1 p-4 md:p-6 overflow-hidden flex flex-col h-full">
+        <div className="flex-grow overflow-y-auto">
+          <TitleInput title={title} onChange={setTitle} />
+          
+          <div id="chart-container" className="bg-white border border-gray-300 rounded-lg p-2 md:p-4">
+            {holes.map((row, i) => (
+              <FluteSVG
+                key={i}
+                index={i}
+                holes={row}
+                onToggleHole={(holeIndex) => handleToggleHole(i, holeIndex)}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="mt-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-2 relative z-10">
-          <p className="text-gray-600 text-sm">穴をクリックすると色が切り替わります</p>
-          <button
-            onClick={handleSaveChart}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors w-full md:w-auto justify-center"
-          >
-            <Save size={16} />
-            運指表を保存
-          </button>
+        {/* Fixed bottom bar for save button */}
+        <div className="sticky bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 mt-4">
+          <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <p className="text-gray-600 text-sm">穴をクリックすると色が切り替わります</p>
+            <button
+              onClick={handleSaveChart}
+              className="flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors w-full md:w-auto"
+            >
+              <Save size={16} />
+              運指表を保存
+            </button>
+          </div>
         </div>
       </div>
     </div>
